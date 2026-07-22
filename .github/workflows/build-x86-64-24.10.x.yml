@@ -19,18 +19,18 @@ on:
       custom_router_ip:
         description: "旁路由 IP (请与 iKuai 在同一网段，如 192.168.2.2)"
         required: true
-        default: "192.168.2.2"
+        default: "10.10.10.3"
       main_router_ip:
         description: "主路由 iKuai IP (网关与DNS，如 192.168.2.1)"
         required: true
-        default: "192.168.2.1"
+        default: "10.10.10.2"
       profile:
         description: '请输入要编译固件大小 单位(MB)'
         required: true
-        default: '1024'
+        default: '2048'
       enable_store:
         description: "集成 store 商店"
-        required: false
+        required: true
         type: boolean
         default: true
       include_docker:
