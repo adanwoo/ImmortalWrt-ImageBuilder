@@ -127,7 +127,7 @@ jobs:
           echo -e "\n**注意**：刷入开机后，eth0 会自动配置好以上 IP 且关闭 DHCP。" >> ${{ github.workspace }}/router-info.md
 
       - name: Upload ImmortWrt as release assets
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: Autobuild-x86-64
           body_path: ${{ github.workspace }}/router-info.md
