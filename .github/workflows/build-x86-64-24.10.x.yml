@@ -126,7 +126,7 @@ jobs:
             echo "- 🐳 **Docker**: 未集成 (精简版)" >> ${{ github.workspace }}/router-info.md
           fi
           
-          echo -e "\n**注意**：刷入开机后，eth2 会自动配置好以上 IP 且关闭 DHCP。" >> ${{ github.workspace }}/router-info.md
+          echo -e "\n**注意**：刷入开机后，虚拟机内第一张网卡(eth0) 会自动配置好以上 IP 且关闭 DHCP。" >> ${{ github.workspace }}/router-info.md
 
       - name: Upload ImmortWrt as release assets
         uses: softprops/action-gh-release@v2

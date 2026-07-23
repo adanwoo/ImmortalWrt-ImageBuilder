@@ -75,34 +75,34 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES easytier luci-app-easytier"
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-rtp2httpd luci-i18n-rtp2httpd-zh-cn"
 # 静态文件服务器dufs
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-dufs-zh-cn"
-# luci-app-ap-mode 访问AP/光猫
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-ap-mode"
+# luci-app-ap-mode 访问AP/光猫 【已禁用：24.10.6官方源与store仓库均无此包，会导致 make image 报错 "Cannot install package"】
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-ap-mode"
 # luci-app-diskman 磁盘管理
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-diskman"
 # luci-app-filebrowser 文件浏览器
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-filebrowser"
-# luci-app-iptvhelper iptv助手
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-iptvhelper"
+# luci-app-iptvhelper iptv助手 【已禁用：官方源/store均无此包】
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-iptvhelper"
 # luci-app-msd_lite iptv组播
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-msd_lite"
-# luci-app-nft-timecontrol 上网时间控制
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-nft-timecontrol"
+# luci-app-nft-timecontrol 上网时间控制 【已禁用：官方源/store均无此包】
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-nft-timecontrol"
 # luci-app-netdata 性能监控
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-netdata"
-# luci-app-fastnet 网络测速
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-fastnet"
-# luci-app-parentcontrol 家长控制
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-parentcontrol"
+# luci-app-fastnet 网络测速 【已禁用：官方源/store均无此包】
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-fastnet"
+# luci-app-parentcontrol 家长控制 【已禁用：官方源/store均无此包】
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-parentcontrol"
 # luci-app-samba4 samba文件共享
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-samba4"
 # luci-app-ttyd 网页版命令行
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-ttyd"
 # luci-app-ddnsto 内网穿透
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-ddnsto"
-# tvhelper 电视盒子助手
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-tvhelper"
-# luci-theme-design luci主题
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-theme-design"
+# tvhelper 电视盒子助手 【已禁用：官方源/store均无此包】
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-tvhelper"
+# luci-theme-design luci主题 【已禁用：官方源/store均无此包】
+#CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-theme-design"
 
 
 
@@ -246,4 +246,4 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-theme-design"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-xlnetacc-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-zerotier-zh-cn"
 # 追加：8505 PVE 旁路由专属精简与插件包 (24.10.x)
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES -coremark -ds-lite -kmod-8139cp -kmod-8139too -kmod-amazon-ena -kmod-amd-xgbe -kmod-atlantic -kmod-bnx2 -kmod-bnx2x -kmod-button-hotplug -kmod-drm-amdgpu -kmod-drm-i915 -kmod-dwmac-intel -kmod-e1000 -kmod-e1000e -kmod-forcedeth -kmod-fs-f2fs -kmod-fs-vfat -mkf2fs -kmod-i40e -kmod-iavf -kmod-igb -kmod-igbvf -kmod-ixgbe -kmod-ixgbevf -kmod-mlx4-core -kmod-mlx5-core -kmod-mmc -kmod-pcnet32 -kmod-phy-broadcom -kmod-r8101 -kmod-r8168 -kmod-sdhci -kmod-tg3 -kmod-tulip -kmod-usb-hid -usbutils -kmod-vmxnet3 -lm-sensors-detect -luci-app-fan -luci-app-upnp -luci-app-wifihistory -ppp -ppp-mod-pppoe -swconfig
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES -coremark -ds-lite -kmod-8139cp -kmod-8139too -kmod-amazon-ena -kmod-amd-xgbe -kmod-atlantic -kmod-bnx2 -kmod-bnx2x -kmod-button-hotplug -kmod-drm-amdgpu -kmod-drm-i915 -kmod-dwmac-intel -kmod-e1000 -kmod-e1000e -kmod-forcedeth -kmod-fs-f2fs -kmod-fs-vfat -mkf2fs -kmod-i40e -kmod-iavf -kmod-igb -kmod-igbvf -kmod-ixgbe -kmod-ixgbevf -kmod-mlx4-core -kmod-mlx5-core -kmod-mmc -kmod-pcnet32 -kmod-phy-broadcom -kmod-r8101 -kmod-r8168 -kmod-sdhci -kmod-tg3 -kmod-tulip -kmod-usb-hid -usbutils -kmod-vmxnet3 -lm-sensors-detect -luci-app-fan -luci-app-upnp -luci-app-wifihistory -ppp -ppp-mod-pppoe -swconfig"
