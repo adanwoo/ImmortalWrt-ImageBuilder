@@ -36,6 +36,13 @@ if [ -f /usr/lib/lua/luci/controller/advancedplus.lua ]; then
     echo "fix ttyd show msg: /usr/bin/zsh: not found" >>$LOGFILE
 fi
 
+# 6.5 若已安装 KuCat 主题则设为默认主题
+if [ -d /www/luci-static/kucat ]; then
+    uci set luci.main.mediaurlbase='/luci-static/kucat'
+    uci commit luci
+    echo "default theme set to kucat" >>$LOGFILE
+fi
+
 # 7. 若安装了 dockerd 则设置 Docker 的防火墙规则
 if command -v dockerd >/dev/null 2>&1; then
     echo "检测到 Docker，正在配置防火墙规则..." >>$LOGFILE
