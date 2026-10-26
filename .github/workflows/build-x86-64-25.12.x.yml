@@ -100,12 +100,16 @@ jobs:
 
       - name: Download NaiLink apk (本地附加包)
         run: |
-          mkdir -p "${{ github.workspace }}/shell/local-apk"
+          DIR="${{ github.workspace }}/shell/local-apk"
+          mkdir -p "$DIR"
           BASE="https://github.com/slobys/NaiLink/releases/download/openwrt-v0.6.36"
-          wget -q "$BASE/daed-router-0.6.36-x86_64.apk" -O "${{ github.workspace }}/shell/local-apk/daed-router-0.6.36-x86_64.apk"
-          wget -q "$BASE/luci-app-daed-router-0.6.36.apk" -O "${{ github.workspace }}/shell/local-apk/luci-app-daed-router-0.6.36.apk"
-          echo "✅ 本地附加 apk:"
-          ls -lh "${{ github.workspace }}/shell/local-apk/"
+          # apk v3 的索引按 <name>-<version>.apk 定位文件，官方资产名带 -x86_64 后缀，
+          # 必须重命名为 daed-router-0.6.36-r1.apk / luci-app-daed-router-0.6.36-r1.apk，
+          # 否则 make image 时报 "package mentioned in index not found"
+          wget -q "$BASE/daed-router-0.6.36-x86_64.apk"   -O "$DIR/daed-router-0.6.36-r1.apk"
+          wget -q "$BASE/luci-app-daed-router-0.6.36.apk" -O "$DIR/luci-app-daed-router-0.6.36-r1.apk"
+          echo "✅ 本地附加 apk（NaiLink 0.6.36 x86_64，已按 apk v3 命名规范重命名）:"
+          ls -lh "$DIR/"
 
       - name: Build ImmortalWrt-x86-64-efi 25.12.x
         run: |
