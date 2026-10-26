@@ -189,3 +189,46 @@
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-wifischedule-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-xinetd-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-xlnetacc-zh-cn"
+
+
+# ==================== 个人定制清单（对齐 24.10 固件，2026-10-26）====================
+# 25.12 为 apk 体系，插件生态与 24.10(opkg) 不同，部分插件暂无 apk 版本，见文件末尾说明
+
+# ---- 第三方 apk（来自 wukongdaily/apk 的 run/x86，构建时自动 clone 并解包）----
+# Run 安装器
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-run"
+# 首页 / 网络向导（依赖 store 商店，构建时勾选 enable_store）
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-quickstart quickstart luci-i18n-quickstart-zh-cn"
+# 极光主题（25.12 无 KuCat 的 apk，故以 aurora 作为默认主题，见 99-custom.sh）
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-theme-aurora luci-app-aurora-config luci-i18n-aurora-config-zh-cn"
+# 分区扩容
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-partexp luci-i18n-partexp-zh-cn"
+# MosDNS
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-mosdns luci-i18n-mosdns-zh-cn"
+
+# ---- imm 仓库内（官方源直接可用）----
+# 代理：passwall + 核心组件（官方源 passwall 已是 26.9.x，比第三方 run 更新，故不走 run）
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES geoview xray-core sing-box hysteria ipt2socks luci-app-passwall luci-i18n-passwall-zh-cn"
+# 广告过滤
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-adguardhome"
+# daed 中文（核心由 daed 包自带依赖）
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-daed-zh-cn"
+# WireGuard
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-proto-wireguard"
+# 应用过滤（官方特征库 feature.cfg 由 files 覆盖层带入）
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-appfilter luci-i18n-appfilter-zh-cn"
+# IPTV 流媒体转发
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-rtp2httpd luci-i18n-rtp2httpd-zh-cn"
+# 磁盘 / 流媒体 / 监控 / 共享 / 终端
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-diskman luci-app-msd_lite luci-app-netdata luci-app-samba4 luci-app-ttyd"
+# 加速相关模块
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES kmod-tcp-bbr kmod-nft-socket kmod-nft-tproxy"
+# 内置 unzip（与 24.10 一致：修复插件更新组件时报 Not installed unzip）
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES unzip"
+
+# ---- 25.12 暂时无法集成（24.10 固件中存在，apk 生态未覆盖）----
+# luci-theme-kucat          : 官方源与 wukongdaily/apk 均无 apk 版本 → 改用 aurora
+# luci-app-easytier/easytier: wukongdaily/apk 未提供 → 无法集成
+# luci-app-turboacc         : ImmortalWrt 25.12 已移除该插件
+# luci-app-uninstall        : 仅有 ipk 版本；可用 store 的软件包管理做卸载
+# luci-app-watchdog         : wukongdaily/apk 未提供
