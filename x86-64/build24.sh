@@ -35,6 +35,17 @@ else
 
   echo "✅ Run files copied to extra-packages:"
   ls -lh /home/build/immortalwrt/extra-packages/*.run
+
+  # ============= 追加第三方 .run（Are-u-ok 等，由工作流下载到 shell/extra-run）=============
+  # 说明：同样是 iStore .run 格式，放进 extra-packages 后由 prepare-packages.sh 一并解包成 ipk，
+  #       若包名与官方/store 重复，opkg 自动按版本号取高者（例如 mosdns 5.3.4-r14 > 5.3.3-r4）
+  if [ -d /home/build/immortalwrt/shell/extra-run ]; then
+      echo "📦 追加 shell/extra-run 下的第三方 .run"
+      cp -v /home/build/immortalwrt/shell/extra-run/*.run /home/build/immortalwrt/extra-packages/ 2>/dev/null || true
+  else
+      echo "⚪️ 未发现 shell/extra-run 目录"
+  fi
+
   # 解压并拷贝ipk到packages目录
   sh shell/prepare-packages.sh
   ls -lah /home/build/immortalwrt/packages/
