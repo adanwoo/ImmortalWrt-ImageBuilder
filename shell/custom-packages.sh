@@ -22,8 +22,13 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-adguardhome"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-openvpn-server luci-i18n-openvpn-server-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-openvpn-zh-cn"
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-dae-zh-cn"
-# 已更新到daed 1.28.0 版本
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-daed-zh-cn"
+# 代理面板：NaiLink（奶油互联，基于 daed 二次开发）替代原版 daed
+# 包名仍为 daed-router / luci-app-daed-router（上游 Makefile 未改名）
+# 包本体由 shell/local-ipk 提供（构建时从 NaiLink Release 下载 x86_64 ipk）
+# 依赖：ca-bundle jshn jsonfilter uclient-fetch kmod-sched-core kmod-sched-bpf kmod-veth v2ray-geoip v2ray-geosite
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES daed-router luci-app-daed-router"
+# NaiLink 的 control 里声明 Conflicts: daed / luci-app-daed，必须显式排除原版 daed 全家桶
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES -daed -luci-app-daed -luci-i18n-daed-zh-cn -daed-geoip -daed-geosite"
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES geoview xray-core sing-box hysteria kmod-nft-socket kmod-nft-tproxy ipt2socks luci-app-passwall luci-i18n-passwall-zh-cn"
 # passwall2 已更新到26.5.1
 #CUSTOM_PACKAGES="$CUSTOM_PACKAGES geoview xray-core sing-box hysteria kmod-nft-socket kmod-nft-tproxy luci-app-passwall2 luci-i18n-passwall2-zh-cn"

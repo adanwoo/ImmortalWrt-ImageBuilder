@@ -211,8 +211,12 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-mosdns luci-i18n-mosdns-zh-cn"
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES geoview xray-core sing-box hysteria ipt2socks luci-app-passwall luci-i18n-passwall-zh-cn"
 # 广告过滤
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-adguardhome"
-# daed 中文（核心由 daed 包自带依赖）
-CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-i18n-daed-zh-cn"
+# 代理面板：NaiLink（奶油互联，基于 daed 二次开发）替代原版 daed
+# 包名仍为 daed-router / luci-app-daed-router；apk 由 shell/local-apk 提供（构建时下载）
+# 依赖：ca-bundle jshn jsonfilter uclient-fetch kmod-sched-core kmod-sched-bpf kmod-veth v2ray-geoip v2ray-geosite
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES daed-router luci-app-daed-router"
+# NaiLink 的 control 里声明 Conflicts: daed / luci-app-daed，必须显式排除原版 daed 全家桶
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES -daed -luci-app-daed -luci-i18n-daed-zh-cn -daed-geoip -daed-geosite"
 # WireGuard
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-proto-wireguard"
 # 应用过滤（官方特征库 feature.cfg 由 files 覆盖层带入）

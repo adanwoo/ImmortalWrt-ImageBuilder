@@ -98,6 +98,15 @@ jobs:
           echo "✅ 本地附加 apk:"
           ls -lh "${{ github.workspace }}/shell/local-apk/"
 
+      - name: Download NaiLink apk (本地附加包)
+        run: |
+          mkdir -p "${{ github.workspace }}/shell/local-apk"
+          BASE="https://github.com/slobys/NaiLink/releases/download/openwrt-v0.6.36"
+          wget -q "$BASE/daed-router-0.6.36-x86_64.apk" -O "${{ github.workspace }}/shell/local-apk/daed-router-0.6.36-x86_64.apk"
+          wget -q "$BASE/luci-app-daed-router-0.6.36.apk" -O "${{ github.workspace }}/shell/local-apk/luci-app-daed-router-0.6.36.apk"
+          echo "✅ 本地附加 apk:"
+          ls -lh "${{ github.workspace }}/shell/local-apk/"
+
       - name: Build ImmortalWrt-x86-64-efi 25.12.x
         run: |
           profile="${{ inputs.profile }}"

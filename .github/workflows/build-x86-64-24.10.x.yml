@@ -92,6 +92,15 @@ jobs:
             echo "❎ 未启用 luci-app-store"
           fi
 
+      - name: Download NaiLink ipk (本地附加包)
+        run: |
+          mkdir -p "${{ github.workspace }}/shell/local-ipk"
+          BASE="https://github.com/slobys/NaiLink/releases/download/openwrt-v0.6.36"
+          wget -q "$BASE/daed-router-0.6.36-x86_64.ipk" -O "${{ github.workspace }}/shell/local-ipk/daed-router-0.6.36-x86_64.ipk"
+          wget -q "$BASE/luci-app-daed-router-0.6.36.ipk" -O "${{ github.workspace }}/shell/local-ipk/luci-app-daed-router-0.6.36.ipk"
+          ls -lh "${{ github.workspace }}/shell/local-ipk/"
+          echo "✅ 本地附加 ipk 下载完成（NaiLink 0.6.36 / x86_64）"
+
       - name: Build ImmortalWrt-x86-64-efi 24.10.x
         run: |
           profile="${{ inputs.profile }}"

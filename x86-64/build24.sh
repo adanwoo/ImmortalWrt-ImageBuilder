@@ -108,6 +108,18 @@ if echo "$PACKAGES" | grep -q "luci-app-ssr-plus"; then
 else
     echo "⚪️ 未选择 luci-app-ssr-plus"
 fi
+# ============= 仓库内本地附加 ipk（第三方仓库未提供的包，例如 NaiLink）=============
+# 说明：imagebuilder 执行 make image 时会先跑 ipkg-make-index.sh 重建 packages/Packages，
+#       所以直接放进 packages/ 的 ipk 能被按包名解析安装
+if [ -d /home/build/immortalwrt/shell/local-ipk ]; then
+    echo "📦 复制 shell/local-ipk 下的本地 ipk 到 packages/"
+    mkdir -p /home/build/immortalwrt/packages
+    cp -v /home/build/immortalwrt/shell/local-ipk/*.ipk /home/build/immortalwrt/packages/ 2>/dev/null || true
+    ls -lah /home/build/immortalwrt/packages/ | tail -8
+else
+    echo "⚪️ 未发现 shell/local-ipk 目录"
+fi
+
 # 构建镜像
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Building image with the following packages:"
 echo "$PACKAGES"
