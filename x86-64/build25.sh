@@ -104,6 +104,17 @@ else
     echo "⚪️ 未选择 luci-app-ssr-plus"
 fi
 
+# ============= 仓库内本地附加 apk（第三方仓库未提供的包，例如 EasyTier）=============
+# 说明：imagebuilder 会自动扫描 packages/ 目录下的本地 apk，列为 PACKAGES 后即可安装
+if [ -d /home/build/immortalwrt/shell/local-apk ]; then
+    echo "📦 复制 shell/local-apk 下的本地 apk 到 packages/"
+    mkdir -p /home/build/immortalwrt/packages
+    cp -v /home/build/immortalwrt/shell/local-apk/*.apk /home/build/immortalwrt/packages/ 2>/dev/null || true
+    ls -lah /home/build/immortalwrt/packages/ | tail -8
+else
+    echo "⚪️ 未发现 shell/local-apk 目录"
+fi
+
 # 构建镜像
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Building image with the following packages:"
 echo "$PACKAGES"

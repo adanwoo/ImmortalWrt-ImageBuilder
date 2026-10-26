@@ -225,10 +225,13 @@ CUSTOM_PACKAGES="$CUSTOM_PACKAGES luci-app-diskman luci-app-msd_lite luci-app-ne
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES kmod-tcp-bbr kmod-nft-socket kmod-nft-tproxy"
 # 内置 unzip（与 24.10 一致：修复插件更新组件时报 Not installed unzip）
 CUSTOM_PACKAGES="$CUSTOM_PACKAGES unzip"
+# EasyTier 组网：核心 apk 由 shell/local-apk 提供（源 EasyTier/luci-app-easytier v2.6.4 x86_64 SNAPSHOT）
+# noweb 版不带内置 web UI，统一由 LuCI 管理，比完整版省约 8MB
+CUSTOM_PACKAGES="$CUSTOM_PACKAGES easytier-noweb luci-app-easytier luci-i18n-easytier-zh-cn"
 
 # ---- 25.12 暂时无法集成（24.10 固件中存在，apk 生态未覆盖）----
 # luci-theme-kucat          : 官方源与 wukongdaily/apk 均无 apk 版本 → 改用 aurora
-# luci-app-easytier/easytier: wukongdaily/apk 未提供 → 无法集成
+# （easytier 已通过 shell/local-apk 集成，见上方清单）
 # luci-app-turboacc         : ImmortalWrt 25.12 已移除该插件
 # luci-app-uninstall        : 仅有 ipk 版本；可用 store 的软件包管理做卸载
 # luci-app-watchdog         : wukongdaily/apk 未提供

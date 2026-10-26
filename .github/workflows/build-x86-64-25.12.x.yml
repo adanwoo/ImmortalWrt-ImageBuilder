@@ -89,6 +89,15 @@ jobs:
             echo "❎ 未启用 luci-app-store"
           fi
 
+      - name: Download EasyTier apk (本地附加包)
+        run: |
+          mkdir -p "${{ github.workspace }}/shell/local-apk"
+          wget -q "https://github.com/EasyTier/luci-app-easytier/releases/download/v2.6.4/EasyTier-v2.6.4-x86_64-SNAPSHOT.zip" -O /tmp/easytier.zip
+          unzip -o -j /tmp/easytier.zip -d "${{ github.workspace }}/shell/local-apk"
+          rm -f "${{ github.workspace }}/shell/local-apk/easytier-2.6.4.apk"
+          echo "✅ 本地附加 apk:"
+          ls -lh "${{ github.workspace }}/shell/local-apk/"
+
       - name: Build ImmortalWrt-x86-64-efi 25.12.x
         run: |
           profile="${{ inputs.profile }}"
